@@ -17,7 +17,7 @@ uart = serial.Serial("/dev/ttyS0", baudrate=57600, timeout=1)
 # uart = serial.Serial("/dev/ttyAMA0", baudrate=57600, timeout=1)
 
 finger = adafruit_fingerprint.Adafruit_Fingerprint(uart)
-
+print("Fingerprint templates: ", finger.templates)
 app = Flask(__name__)
 
 # Database for storing enrolled IDs
@@ -36,7 +36,20 @@ def enroll():
         id = request.form['id']
         # Store the ID in the enrolled IDs database
         enrolled_ids.append(id)
-        return redirect('/')
+        if finger.read_templates() != adafruit_fingerprint.OK:
+            raise RuntimeError("Failed to read templates")
+        print("Fingerprint templates: ", finger.templates)
+        if finger.count_templates() != adafruit_fingerprint.OK:
+            raise RuntimeError("Failed to read templates")
+        print("Number of templates found: ", finger.template_count)
+        if finger.read_sysparam() != adafruit_fingerprint.OK:
+            raise RuntimeError("Failed to get system parameters")
+        message = enroll_finger(int(id))
+        if message:
+            msg = 'User enrolled successfully'
+        else:
+            msg = 'Something went wrong, try again later'
+        return render_template('enroll.html',message=msg)
     return render_template('enroll.html')
 
 
@@ -53,8 +66,8 @@ def login():
     return render_template('login.html')
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+#    app.run(host='0.0.0.0', port=5001, debug=True)
 
 
 def get_fingerprint():
@@ -169,8 +182,10 @@ def enroll_finger(location):
     else:
         if i == adafruit_fingerprint.ENROLLMISMATCH:
             print("Prints did not match")
+            message = 'Prints did not match'
         else:
             print("Other error")
+            message = 'Something went wrong, try again'
         return False
 
     print("Storing model #%d..." % location, end="")
@@ -180,10 +195,13 @@ def enroll_finger(location):
     else:
         if i == adafruit_fingerprint.BADLOCATION:
             print("Bad storage location")
+            message = 'Error while storing'
         elif i == adafruit_fingerprint.FLASHERR:
             print("Flash storage error")
+            message = 'Error while storing'
         else:
             print("Other error")
+            message = 'Something went wrong, try again'
         return False
 
     return True
@@ -239,3 +257,7 @@ def get_num(max_number):
         except ValueError:
             pass
     return i
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5001, debug=True)
