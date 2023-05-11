@@ -41,6 +41,7 @@
 
 
 
+
 </style>
 
 <html>
@@ -48,8 +49,8 @@
 <body>
 
 <center>
-    <form method="POST" action="/login">
-        <div>
+    <div>
+        <form method="POST" action="/login">
             <p id="header1">Login</p>
             <table>
                 <tr>
@@ -64,13 +65,14 @@
                 </tr>
             </table>
             <button type="submit" id="enroll">LOGIN</button>
-        </div>
-    </form>
-    <form method="POST" action="/">
-        <p id="header">{{ message }}</p>
+        </form>
+        <form method="POST" action="/">
+            <p id="header">{{ message }}</p>
 
-        <button type="submit" id="back">GO BACK</button>
-    </form>
+            <button type="submit" id="back">GO BACK</button>
+        </form>
+    </div>
+
 </center>
 </body>
 </html>
