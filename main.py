@@ -56,13 +56,20 @@ def enroll():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # Get the ID from the input form
-        id = request.form['id']
-        if id in enrolled_ids:
-            message = 'Login successful!'
+        if finger.read_templates() != adafruit_fingerprint.OK:
+            raise RuntimeError("Failed to read templates")
+        print("Fingerprint templates: ", finger.templates)
+        if finger.count_templates() != adafruit_fingerprint.OK:
+            raise RuntimeError("Failed to read templates")
+        print("Number of templates found: ", finger.template_count)
+        if finger.read_sysparam() != adafruit_fingerprint.OK:
+            raise RuntimeError("Failed to get system parameters")
+
+        if get_fingerprint():
+            msg = "Detected User ID: " + str(finger.finger_id) + "with confidence" + str(finger.confidence)
         else:
-            message = 'Login failed. ID not found.'
-        return render_template('login.html', message=message)
+            msg = 'User not found'
+        return render_template('enroll.html', message=msg)
     return render_template('login.html')
 
 
