@@ -66,7 +66,7 @@ def login():
             raise RuntimeError("Failed to get system parameters")
 
         if get_fingerprint():
-            msg = "Detected User ID: " + str(finger.finger_id) + "with confidence" + str(finger.confidence)
+            msg = "Detected User ID: " + str(finger.finger_id) + ", with Confidence: " + str(finger.confidence)
         else:
             msg = 'User not found'
         return render_template('enroll.html', message=msg)
