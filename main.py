@@ -69,7 +69,7 @@ def login():
             msg = "Detected User ID: " + str(finger.finger_id) + ", with Confidence: " + str(finger.confidence)
         else:
             msg = 'User not found'
-        return render_template('enroll.html', message=msg)
+        return render_template('login.html', message=msg)
     return render_template('login.html')
 
 
