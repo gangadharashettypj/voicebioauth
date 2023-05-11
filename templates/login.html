@@ -6,6 +6,13 @@
         margin-top: 20%;
         font-family: Helvetica;
     }
+    #header1{
+        font-weight: bold;
+        font-size: 30px;
+        color: rgb(18, 19, 19);
+        margin-top: 20%;
+        font-family: Helvetica;
+    }
 
     #back{
         height: 50px;
@@ -21,19 +28,40 @@
 
 
 
+
+
 </style>
 
 <html>
 <title>Registration</title>
 <body>
-<form method="POST" action="/">
-    <center>
+
+<center>
+    <form method="POST" action="/enroll">
+        <div>
+            <p id="header1">Login</p>
+            <table>
+                <tr>
+                    <td>
+                        <ol>
+                            <li>Wait for blue light to turn on in fingerprint sensor</li>
+                            <li>Place your finger</li>
+                            <li>Remove it after 2 or 3 seconds</li>
+                            <li>You will get a message once you are enrolled</li>
+                        </ol>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" id="enroll">ENROLL</button>
+        </div>
+    </form>
+    <form method="POST" action="/">
         {% if message %}
         <p id="header">{{ message }}</p>
         {% endif %}
 
-        <button type="submit"  id="back">GO BACK</button>
-    </center>
-</form>
+        <button type="submit" id="back">GO BACK</button>
+    </form>
+</center>
 </body>
 </html>
