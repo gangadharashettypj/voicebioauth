@@ -1,23 +1,88 @@
-<!DOCTYPE html>
+<style>
+    #header{
+        font-weight: bold;
+        font-size: 30px;
+        color: rgb(18, 19, 19);
+        margin-top: 20%;
+        font-family: Helvetica;
+    }
+
+    #id{
+        width: 300px;
+        height: 50px;
+        color: black;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    #enroll{
+        height: 50px;
+        width: 250px;
+        padding: 30px,10px,30px,10px;
+        background-color: grey;
+        color: white;
+        border-radius: 12px;
+        margin-top: 30px;
+
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+         margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+
+
+
+
+</style>
+
 <html>
-<head>
-    <title>Enroll</title>
-</head>
+<title>Registration</title>
 <body>
-    <h1>Enroll</h1>
-    <form method="POST" action="/enroll">
-        <label for="id">ID:</label>
-        <input type="text" id="id" name="id" required>
-        <button type="submit">Enroll</button>
-	After pressing enroll follow these steps:
-	<ol>
-		<li>Wait for blue light to turn on in fingerprint sensor</li>
-		<li>Place your finger</li>
-		<li>Remove it and place your finger after 2 seconds</li>
-		<li>Remove your finger and you will get enrolled</li>
-	</ol>
-	<br>
-	<h1>{{message}}</h1> 
-    </form>
+<form method="POST" action="/enroll">
+    <center>
+        <div>
+            <label for="id">ID:</label>
+            <p id="header">Registration</p>
+            <table>
+                <tr>
+                    <td>
+                        <input type='number' id='id' name="id" placeholder="Enter an ID">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <br><br>
+                        After pressing enroll follow these steps:
+                        <ol>
+                            <li>Wait for blue light to turn on in fingerprint sensor</li>
+                            <li>Place your finger</li>
+                            <li>Remove it and place your finger after 2 seconds</li>
+                            <li>Remove your finger and you will get enrolled</li>
+                        </ol>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <h1>{{message}}</h1>
+                    </td>
+                </tr>
+            </table>
+            <button type="submit" id="enroll">ENROLL</button>
+        </div>
+    </center>
+
+
+</form>
+
 </body>
 </html>
