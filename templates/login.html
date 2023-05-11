@@ -42,6 +42,7 @@
 
 
 
+
 </style>
 
 <html>
@@ -65,12 +66,12 @@
                 </tr>
             </table>
             <button type="submit" id="enroll">LOGIN</button>
-        </form>
-        <form method="POST" action="/">
-            <p id="header">{{ message }}</p>
 
-            <button type="submit" id="back">GO BACK</button>
+            <h1>{{ message }}</h1>
+
+            <button type="submit" id="back" onclick="location.href='/login'">GO BACK</button>
         </form>
+
     </div>
 
 </center>
