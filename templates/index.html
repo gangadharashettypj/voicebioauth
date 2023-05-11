@@ -1,11 +1,39 @@
-<!DOCTYPE html>
+<style>
+    #header{
+font-weight: bold;
+font-size: 30px;
+color: rgb(18, 19, 19);
+margin-top: 20%;
+font-family: Helvetica;
+    }
+
+    #register{
+        height: 50px;
+        width: 300px;
+        padding: 30px,10px,30px,10px;
+        background-color: green;
+        color:white;
+        border-radius: 12px;
+    }
+
+    #login{
+        height: 50px;
+        width: 300px;
+        padding: 30px,10px,30px,10px;
+        background-color: blue;
+        color: white;
+        border-radius: 12px;
+    }
+</style>
+
+
 <html>
-<head>
-    <title>Biometric Authentication</title>
-</head>
-<body>
-    <h1>Biometric Authentication</h1>
-    <a href="/enroll">Enroll</a>
-    <a href="/login">Login</a>
-</body>
+    <title>VoiceBioAuth</title>
+    <body>
+        <center>
+        <p id="header">Hello, Welcome!!</p>
+        <button id= 'register'  onclick="location.href='/enroll'">REGISTER</button>
+        <button id="login" onclick="location.href='/login'">LOGIN</button>
+        </center>
+    </body>
 </html>

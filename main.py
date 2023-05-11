@@ -2,7 +2,7 @@ import time
 
 import adafruit_fingerprint
 import serial
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 
 # import board
 # uart = busio.UART(board.TX, board.RX, baudrate=57600)
@@ -49,7 +49,7 @@ def enroll():
             msg = 'User enrolled successfully'
         else:
             msg = 'Something went wrong, try again later'
-        return render_template('enroll.html',message=msg)
+        return render_template('enroll.html', message=msg)
     return render_template('enroll.html')
 
 
@@ -64,10 +64,6 @@ def login():
             message = 'Login failed. ID not found.'
         return render_template('login.html', message=message)
     return render_template('login.html')
-
-
-#if __name__ == '__main__':
-#    app.run(host='0.0.0.0', port=5001, debug=True)
 
 
 def get_fingerprint():
